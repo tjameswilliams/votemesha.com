@@ -1,0 +1,36 @@
+{
+  "name": "votemesha.com",
+  "version": "1.0.0",
+  "description": "The official Vote 4 Mesha campaign website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjameswilliams/votemesha.com.git"
+  },
+  "author": "Tim Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjameswilliams/votemesha.com/issues"
+  },
+  "homepage": "https://github.com/tjameswilliams/votemesha.com#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.2.31",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-messages": "^1.5.8",
+    "angular-route": "^1.2.32",
+    "browser-sync": "^2.17.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "jquery": "^3.1.1",
+    "merge-stream": "^1.0.0"
+  }
+}
