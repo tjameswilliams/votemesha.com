@@ -4,12 +4,16 @@
   <meta charset="utf-8">
 
   <title><?= $title ?></title>
-  <meta name="description" content="<?= $title ?>">
+  <meta name="description" content="<?= $description ?>">
   <meta name="author" content="Vote for Mesha">
 
   <link rel="stylesheet" href="/dist/all.min.css?v=1.0">
   <script src="/dist/all.min.js?v=1.0"></script>
-
+  <meta property="og:url"                content="http://votemesha.com" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="<?= $title ?>" />
+  <meta property="og:description"        content="<?= $description ?>" />
+  <meta property="og:image"              content="http://votemesha.com/creative/meshbama_pathed.png" />
 </head>
 
 <body ng-controller="global" ng-cloak>
