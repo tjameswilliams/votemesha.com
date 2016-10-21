@@ -175,7 +175,8 @@ img {
   padding: 30px 0; }
   #footer .banner {
     padding: 0;
-    text-align: center; }
+    text-align: center;
+    height: 95px; }
     #footer .banner svg {
       background-color: white;
       width: 170px;
