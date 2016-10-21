@@ -249,12 +249,27 @@ img  {
       font-weight: 200;
       letter-spacing: 2px;
     }
-    p {
-      color:white;
-      font-family: $heading;
-      a {
-        color: $dark-blue;
-      }
+
+  }
+}
+
+#footer {
+  background-color: $dark-blue;
+  padding: 30px 0;
+  .banner {
+    padding: 0;
+    text-align: center;
+    svg {
+      background-color:white;
+      width: 170px;
+    }
+  }
+  p {
+    padding: 0 30px;
+    color:white;
+    font-family: $heading;
+    a {
+      color: $dark-red;
     }
   }
 }

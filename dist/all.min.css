@@ -169,8 +169,19 @@ img {
       margin-bottom: 30px;
       font-weight: 200;
       letter-spacing: 2px; }
-    #swag .container p {
-      color: white;
-      font-family: "Oswald", sans-serif; }
-      #swag .container p a {
-        color: #2b325f; }
+
+#footer {
+  background-color: #2b325f;
+  padding: 30px 0; }
+  #footer .banner {
+    padding: 0;
+    text-align: center; }
+    #footer .banner svg {
+      background-color: white;
+      width: 170px; }
+  #footer p {
+    padding: 0 30px;
+    color: white;
+    font-family: "Oswald", sans-serif; }
+    #footer p a {
+      color: #bc0000; }
