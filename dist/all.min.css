@@ -9,6 +9,17 @@ body {
   box-sizing: border-box;
   background-size: cover; }
 
+p {
+  font-family: "Noto Serif", serif;
+  font-size: 20px; }
+
+img {
+  max-width: 100%; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto; }
+
 #menu {
   background-color: white;
   height: 95px; }
@@ -18,3 +29,148 @@ body {
     max-width: 200px; }
     #menu .logo svg {
       height: 90px; }
+    @media (max-width: 960px) {
+      #menu .logo {
+        max-width: 100%;
+        width: 100%; } }
+  #menu .md-toolbar-tools {
+    min-height: 100%; }
+    #menu .md-toolbar-tools .nav-link {
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.87);
+      padding: 0 20px;
+      border-left: 1px solid #c9c9c9;
+      height: 100%;
+      line-height: 95px;
+      transition: all .25s ease;
+      letter-spacing: 1px; }
+      #menu .md-toolbar-tools .nav-link:hover, #menu .md-toolbar-tools .nav-link:active, #menu .md-toolbar-tools .nav-link:focus {
+        color: white;
+        background-color: #bc0000; }
+      @media (max-width: 960px) {
+        #menu .md-toolbar-tools .nav-link {
+          display: none; } }
+
+#hero {
+  background: url("/creative/flag.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  height: 80vh; }
+  #hero:after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+50,000000+50,000000+60,000000+100&0+0,0.65+81,0.65+100 */
+    background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.48) 60%, rgba(0, 0, 0, 0.65) 81%, rgba(0, 0, 0, 0.65) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.48) 60%, rgba(0, 0, 0, 0.65) 81%, rgba(0, 0, 0, 0.65) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.48) 60%, rgba(0, 0, 0, 0.65) 81%, rgba(0, 0, 0, 0.65) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+    /* IE6-9 */ }
+  #hero img {
+    position: absolute;
+    z-index: 5;
+    right: 5%;
+    height: 100%; }
+  #hero .hook {
+    position: absolute;
+    bottom: 0;
+    z-index: 6;
+    background: rgba(46, 52, 95, 0.75);
+    color: white;
+    padding: 15px 20px;
+    text-align: center; }
+    @media (min-width: 1000px) {
+      #hero .hook {
+        left: 4%; } }
+    @media (max-width: 600px) {
+      #hero .hook {
+        right: 0;
+        left: 0; } }
+    #hero .hook h2 {
+      font-size: 38px;
+      margin: 0 0 5px 0;
+      font-family: "Oswald", sans-serif;
+      font-weight: 800; }
+    #hero .hook h3 {
+      font-size: 38px;
+      margin: 0;
+      font-family: "Oswald", sans-serif;
+      font-weight: 300;
+      word-spacing: 4px;
+      letter-spacing: 1px; }
+
+#intro .container {
+  padding: 20px; }
+  #intro .container p {
+    padding: 0 20px; }
+
+#issues {
+  background: #2b325f;
+  color: white; }
+  #issues .container {
+    padding: 30px 20px; }
+    #issues .container > h1 {
+      text-align: center;
+      font-size: 42px;
+      padding: 20px;
+      font-weight: 300;
+      letter-spacing: 2px; }
+    #issues .container svg {
+      max-width: 50%; }
+    #issues .container h4 {
+      margin: 0;
+      font-size: 28px;
+      font-family: "Oswald", sans-serif; }
+    #issues .container p {
+      line-height: 28px;
+      margin-bottom: 5px; }
+    #issues .container .issue {
+      padding-bottom: 30px; }
+      @media (min-width: 960px) {
+        #issues .container .issue div:nth-child(2) {
+          padding-left: 5%;
+          border-left: 1px solid white; } }
+      @media (max-width: 959px) {
+        #issues .container .issue {
+          text-align: center;
+          border-bottom: 1px solid white;
+          padding-bottom: 30px; } }
+
+#support .container {
+  padding: 30px 20px; }
+  #support .container h1 {
+    font-size: 42px;
+    margin-bottom: 0;
+    font-weight: 300;
+    letter-spacing: 2px; }
+  #support .container p {
+    line-height: 28px;
+    margin-bottom: 5px; }
+  #support .container h4 {
+    font-size: 30px;
+    margin: 10px 0;
+    font-weight: 200; }
+
+#swag {
+  background-color: #b7b7b7;
+  text-align: center; }
+  #swag .container {
+    padding: 30px 20px; }
+    #swag .container h1 {
+      color: white;
+      font-size: 42px;
+      margin-bottom: 30px;
+      font-weight: 200;
+      letter-spacing: 2px; }
+    #swag .container p {
+      color: white;
+      font-family: "Oswald", sans-serif; }
+      #swag .container p a {
+        color: #2b325f; }

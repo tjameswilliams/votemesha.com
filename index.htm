@@ -2,6 +2,127 @@
 $description = 'The official Mesha for President Campaign';
 include __DIR__.'/includes/head.htm'; ?>
 
+<section id="hero">
+  <img src="/creative/hopeful_1.png" alt="Mesha is Hopeful" class="mesha" />
+  <div class="hook">
+    <h2>AMERICA IS BACK</h2>
+    <h3>I AM YOUR FACE</h3>
+  </div>
+</section>
 
+<section id="intro">
+  <div class="container"
+    layout-gt-sm="row"
+    layout-sm="column" layout-padding>
+    <div flex layout="column"
+      layout-align="center center">
+      <img src="/creative/bald_eagle.png" alt="Freedom Eagle" />
+    </div>
+    <div flex-gt-sm="60"
+      layout="column"
+      layout-align="center stretch">
+      <p>Don't be fooled into thinking your only choice this election season
+      is between the lesser of two evils. A vote for Mesha shows this nation
+      that you don't take politics at face value. Stand up for your right
+      to vote beyond party lines, stand up for your morals, <em>stand up
+      for tacos.</em></p>
+      <p><strong>Together let's show the world that America has a new FACE.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section id="issues">
+  <div class="container">
+    <h1>Issue Positions</h1>
+    <div class="issue" layout-gt-sm="row"
+    layout-sm="column" layout-padding>
+      <div flex layout="column"
+        layout-align="center center">
+        <?= file_get_contents(__DIR__.'/includes/svg/taco.svg') ?>
+      </div>
+      <div flex-gt-sm="70"
+        layout="column"
+        layout-align="center stretch">
+        <h4>HUNGER</h4>
+        <p>Let's face it, hunger is rampant in this country. I am proposing
+        a brand new initiative <strong>tacos4america</strong> which would give
+        every American the right to satiate their hunger with tasty tasty tacos.</p>
+        <p>Hillary and Trump both oppose <strong>tacos4america</strong> saying
+          "tacos are un-American" (Trump) and "where will the taco budget come
+          from?" (Hillary). <strong>America, let's stop this needless hunger.</strong>
+      </div>
+    </div>
+    <div class="issue" layout-gt-sm="row"
+      layout-sm="column" layout-padding>
+      <div flex layout="column"
+        layout-align="center center">
+        <?= file_get_contents(__DIR__.'/includes/svg/gun.svg') ?>
+      </div>
+      <div flex-gt-sm="70"
+        layout="column"
+        layout-align="center stretch">
+        <h4>2ND AMENDMENT</h4>
+        <p>It is our constitutional "right to keep and bear Arms," is not a
+          trivial issue. What if the zombie apocalypse is around the corner?
+          What if there is a scary clown bothering children at the park?</p>
+        <p>I pledge to stand up for our constitutional rights!</p>
+      </div>
+    </div>
+    <div class="issue" layout-gt-sm="row"
+      layout-sm="column" layout-padding>
+      <div flex layout="column"
+        layout-align="center center">
+        <?= file_get_contents(__DIR__.'/includes/svg/education.svg') ?>
+      </div>
+      <div flex-gt-sm="70"
+        layout="column"
+        layout-align="center stretch">
+        <h4>EDUCATION</h4>
+        <p>I am for education. Let's face it, we are all sick of Facebook posts
+          that say "your going to hell" or text messages that say "Y r u nt rplyn?"
+          Or the constant mis-use and abuse of 'their', 'there' and 'they’re.'</p>
+        <p>With my brand new initiative <strong>grammar4kidz</strong> we will
+          finally solve this problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="container"
+    layout-gt-sm="row"
+    layout-sm="column" layout-padding>
+    <div flex-gt-sm="60"
+      layout="column"
+      layout-align="center stretch">
+      <h1>Running Mate Tim</h1>
+      <p>"I'll be honest, I don't know why Mesha picked me as his running mate
+        I'm just a fairly ok Web Developer. My knowledge of software development
+        isn't exactly the right kind of experience, but Mesha is confident we will re-build
+        the leadership starting from the top-down to work efficiently like software.
+        (Also, if a moron real estate mogul has enough experience, so do I.)</p>
+      <p>"Even if I don't fully understand his decision, I stand by it because
+        he has a face you can trust. I believe Mesha is the only choice for America
+        and if elected, I will do my utmost to support him and remove the bugs from
+        our system."</p>
+      <h4>- Tim</h4>
+    </div>
+    <div flex layout="column"
+      layout-align="center center">
+      <img src="/creative/teamplayas.png" alt="T is for TEAM" />
+    </div>
+  </div>
+</section>
+
+<section id="swag">
+  <div class="container">
+    <h1>COMING SOON</h1>
+    <img src="/creative/plack-shirt.png" alt="Face Shirt!" />
+    <p>* All proceeds of this campaign go to support Mesha's niece <a href="https://www.gofundme.com/lifeforalex" target="_blank">Alex</a>
+      and his brother <a href="https://www.gofundme.com/Life4SeanLancaster" target="_blank">Sean's</a>
+      fight with cancer. Please help us raise money and awarness, and get
+      yourself a sweet sweet face shirt for participating. *</p>
+  </div>
+</section>
 
 <? include __DIR__.'/includes/foot.htm' ?>
