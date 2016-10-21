@@ -178,7 +178,8 @@ img {
     text-align: center; }
     #footer .banner svg {
       background-color: white;
-      width: 170px; }
+      width: 170px;
+      height: 95px; }
   #footer p {
     padding: 0 30px;
     color: white;
