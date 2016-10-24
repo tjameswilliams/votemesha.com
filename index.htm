@@ -114,11 +114,6 @@ include __DIR__.'/includes/head.htm'; ?>
   </div>
 </section>
 
-<section id="swag">
-  <div class="container">
-    <h1>COMING SOON</h1>
-    <img src="/creative/plack-shirt.png" alt="Face Shirt!" />
-  </div>
-</section>
+<section id="swag" ng-include="'/includes/products.html'" ng-controller="products"></section>
 
 <? include __DIR__.'/includes/foot.htm' ?>

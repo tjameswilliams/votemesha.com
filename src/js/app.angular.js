@@ -18,6 +18,17 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
 
         return deferred.promise;
       },
+      'get':function(action) {
+        var deferred = $q.defer();
+        $http({
+          method: 'GET',
+          url: '/system/'+action
+        })
+        .success(function(data, status, headers, config) {
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+      },
       'jsonp':function(action,obj) {
         var deferred = $q.defer();
         if( typeof obj != 'undefined' )
@@ -46,6 +57,143 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
     }
   }])
 
-  .controller('global', ["$scope",function($scope) {
-    console.log('hello world!');
-  }])
+  .config(function($routeProvider) {
+		$routeProvider
+		.when('/confirmation', {
+			controller:'global',
+		})
+		.otherwise({
+			redirectTo:'/'
+		});
+	})
+
+  .factory('Cart', [
+    'AJAX',
+    '$filter',
+    function(AJAX,$filter) {
+      var Cart = {
+        products: [],
+        items: [],
+        id:null,
+        first_name:null,
+        last_name:null,
+        email:null,
+        address:null,
+        city:null,
+        state:null,
+        _setupCart(cart) {
+          var This = this;
+          This.products = cart.products;
+          This.items = cart.items;
+          This.id = cart.id;
+          This.total = cart.total;
+        },
+        getCart: function() {
+          var This = this;
+          AJAX.get('cart').then(function(cart) {
+            This._setupCart(cart);
+          });
+        },
+        addItem: function(item) {
+          var This = this;
+          if( This.items.length ) {
+            var item_ref = $filter('filter')(This.items,{name:item.name}, true)[0];
+            if( item_ref ) {
+              item.qty++;
+              AJAX.post('add_item', item_ref).then(function(cart) {
+                This._setupCart(cart);
+              });
+            }
+          }
+          if( !item_ref ) {
+            item.qty = 1;
+            item.cart_id = This.id;
+            AJAX.post('add_item', item).then(function(cart) {
+              This._setupCart(cart);
+            });
+          }
+        },
+        updateItem: function(item) {
+          var This = this;
+          var item_ref = $filter('filter')(This.items,{name:item.name}, true)[0];
+          item_ref.qty = item.qty;
+          if( item_ref ) {
+            AJAX.post('add_item', item_ref).then(function(cart) {
+              This._setupCart(cart);
+            });
+          }
+        },
+        removeItem: function(item) {
+          var This = this;
+          var item_ref = $filter('filter')(This.items,{name:item.name}, true)[0];
+          AJAX.post('remove_item', item_ref).then(function(cart) {
+            This._setupCart(cart);
+          });
+        },
+        checkout: function() {
+          AJAX.post('get_checkout', {id: this.id}).then(function(res) {
+            if( res.error ) {
+              console.log(res.error);
+            } else {
+              window.location.href = res.redirect;
+            }
+          });
+        },
+        processCheckout: function(token,payerid,cb) {
+          AJAX.post('process_checkout', {
+            token: token,
+            PayerID: payerid
+          }).then(function(res) {
+            cb(res);
+          });
+        }
+      };
+      Cart.getCart();
+      return Cart;
+    }
+  ])
+
+  .controller('global', [
+    "$scope",
+    "Cart",
+    "$location",
+    function($scope,Cart,$location) {
+      $scope.cart = Cart;
+      var qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+          var p=a[i].split('=', 2);
+          if (p.length == 1)
+          b[p[0]] = "";
+          else
+          b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+      })(window.location.search.substr(1).split('&'));
+      if( qs.token ) {
+        $scope.loading = true;
+        Cart.processCheckout(qs.token,qs.PayerID, function(res) {
+          if( res.success ) {
+            window.location.href = '/#/confirmation';
+          } else {
+            console.log(res);
+          }
+        });
+      }
+      if( $location.$$path == '/confirmation' ) {
+        $scope.loading = true;
+        // -- TODO get and clear cart
+      }
+    }
+  ])
+
+  .controller('products', [
+    "$scope",
+    "Cart",
+    function($scope,Cart) {
+      $scope.cart = Cart;
+      console.log($scope.cart);
+    }
+  ])

@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>ORDER NOW!</h1>
+  <div class="container"
+    layout-gt-sm="row"
+    layout-sm="column" layout-padding>
+    <div flex layout="column"
+      layout-align="center center">
+      <img src="/creative/plack-shirt.png" alt="Face Shirt!" />
+    </div>
+    <div flex-gt-sm="50"
+      layout="column"
+      layout-align="center stretch">
+      <table id="products">
+        <tr ng-repeat="item in cart.products"
+          ng-class="{'in-cart':item.in_cart}">
+          <td>{{item.name}}</td>
+          <td>{{item.price | currency}}</td>
+          <td>
+            <div ng-if="item.in_cart">
+              <span>qty.</span>
+              <input class="qty" name="item.qty" ng-model="item.qty"
+                required ng-pattern="/^[0-9]{1,2}$/" type="number"
+                ng-change="cart.updateItem(item)"
+                ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }">
+            </div>
+          </td>
+          <td>
+            <md-button class="md-raised"
+              ng-if="!item.in_cart"
+              ng-click="cart.addItem(item)">
+              <md-icon md-svg-src="/creative/icons/ic_add_black.svg"></md-icon>
+            </md-button>
+            <md-button class="md-raised md-warn"
+              ng-if="item.in_cart"
+              ng-click="cart.removeItem(item)">
+              <md-icon md-svg-src="/creative/icons/ic_remove_white.svg"></md-icon>
+            </md-button>
+          </td>
+        </tr>
+        <tr ng-if="cart.items.length > 0">
+          <td style="text-align:right" colspan="2">
+            <strong>subtotal:</strong>
+          </td>
+          <td>{{cart.total | currency}}</td>
+          <td>
+            <md-button class="md-raised"
+              ng-click="cart.checkout()">
+              <md-icon md-svg-src="/creative/icons/ic_shopping_cart_black.svg"></md-icon>
+            </md-button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

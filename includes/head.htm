@@ -22,17 +22,20 @@
 </head>
 
 <body ng-controller="global" ng-cloak>
-
-  <md-toolbar class="md-hue-2" id="menu">
-    <div class="md-toolbar-tools">
-      <a class="logo" href="#">
-        <?= file_get_contents(__DIR__.'/../includes/svg/mesha_banner.svg') ?>
-      </a>
-      <span flex></span>
-      <a class="nav-link" href="#intro">WHY MESHA?</a>
-      <a class="nav-link" href="#issues">POSITIONS</a>
-      <a class="nav-link" href="#support">SUPPORT</a>
-      <a class="nav-link" href="#swag">SWAG</a>
-      <a class="nav-link" href="#footer">CAUSE</a>
-    </div>
-  </md-toolbar>
+  <div ng-show="loading" id="loading">
+    <md-progress-circular md-diameter="150"></md-progress-circular>
+  </div>
+  <div ng-show="!loading">
+    <md-toolbar class="md-hue-2" id="menu">
+      <div class="md-toolbar-tools">
+        <a class="logo" href="#">
+          <?= file_get_contents(__DIR__.'/../includes/svg/mesha_banner.svg') ?>
+        </a>
+        <span flex></span>
+        <a class="nav-link" href="#intro">WHY MESHA?</a>
+        <a class="nav-link" href="#issues">POSITIONS</a>
+        <a class="nav-link" href="#support">SUPPORT</a>
+        <a class="nav-link" href="#swag">SWAG</a>
+        <a class="nav-link" href="#footer">CAUSE</a>
+      </div>
+    </md-toolbar>

@@ -169,6 +169,17 @@ img {
       margin-bottom: 30px;
       font-weight: 200;
       letter-spacing: 2px; }
+    #swag .container #products {
+      width: 100%;
+      font-size: 18px;
+      font-family: "Oswald", sans-serif; }
+      #swag .container #products tr.in-cart td {
+        background-color: rgba(255, 255, 255, 0.25); }
+        #swag .container #products tr.in-cart td .qty {
+          width: 50px;
+          text-align: center;
+          background: rgba(255, 255, 255, 0.25);
+          border: none; }
 
 #footer {
   background-color: #2b325f;
@@ -187,3 +198,9 @@ img {
     font-family: "Oswald", sans-serif; }
     #footer p a {
       color: #bc0000; }
+
+#loading {
+  text-align: center;
+  padding: 80px; }
+  #loading md-progress-circular {
+    margin: 0 auto; }
