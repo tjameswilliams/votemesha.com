@@ -16,6 +16,13 @@ body {
 p {
   font-family: $body;
   font-size: 20px;
+  line-height: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    // -J 10/23
+    text-shadow: rgba(0, 0, 0, 0.098) 0px 0px 1px;
+    -webkit-font-smoothing: antialiased;
 }
 
 img  {
@@ -72,12 +79,14 @@ img  {
 
 #menu {
   background-color: white;
-  height: 95px;
-
+  /*height: 95px; (-J 10/23)*/
+  height: 155px;
   .logo {
     display: inline-block;
     height: 100%;
-    max-width: 200px;
+    //max-width: 200px;
+	max-width: 244px;
+	padding: 10px 0;
     svg {
       height: 90px;
     }
@@ -93,9 +102,10 @@ img  {
       display: inline-block;
       color: $body-color;
       padding: 0 20px;
-      border-left: 1px solid #c9c9c9;
+      border-left: 1px solid #eee;
       height: 100%;
-      line-height: 95px;
+      /*line-height: 95px; -J 10/23*/
+	  line-height: 155px;
       transition: all .25s ease;
       letter-spacing: 1px;
       &:hover, &:active, &:focus {
@@ -135,33 +145,50 @@ img  {
     height: 100%;
   }
   .hook {
-    position: absolute;
-    bottom:0;
+    position: absolute; 
+	top: 30%;	
     @media (min-width: 1000px) {
       left: 4%;
     }
     @media (max-width: 600px) {
       right: 0;
       left: 0;
+	  width: 100%;
+	  top: 40%;
     }
     z-index: 6;
-    background: rgba(46, 52, 95, .75);
     color:white;
-    padding: 15px 20px;
+    /* -J 10/23 
+ 	bottom:0;
+	padding: 15px 20px; 
     text-align: center;
+	background: rgba(46, 52, 95, .75); */
     h2 {
-      font-size: 38px;
-      margin:0 0 5px 0;
+      //font-size: 38px;
+	  //margin: 0 0 5px 0;
+	  font-size: 58px;
+      margin: 0;
       font-family: $heading;
       font-weight: 800;
+	  @media (max-width: 600px) {
+	  	text-align: center;
+		font-size: 48px;
+	  }
     }
     h3 {
-      font-size: 38px;
-      margin: 0;
+      //font-size: 38px;
+	  //margin: 0;
+	  margin: -20px 0 0;
+	  font-size: 48px;
       font-family: $heading;
       font-weight: 300;
       word-spacing: 4px;
       letter-spacing: 1px;
+	  @media (max-width: 600px) {
+		font-size: 38px;
+	  	text-align: center;
+		margin-top: -10px;
+	  }
     }
   }
 }

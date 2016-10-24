@@ -11,7 +11,12 @@ body {
 
 p {
   font-family: "Noto Serif", serif;
-  font-size: 20px; }
+  font-size: 20px;
+  line-height: 1.5em; }
+
+h1, h2, h3, h4, h5, h6, p {
+  text-shadow: rgba(0, 0, 0, 0.098) 0px 0px 1px;
+  -webkit-font-smoothing: antialiased; }
 
 img {
   max-width: 100%; }
@@ -22,11 +27,13 @@ img {
 
 #menu {
   background-color: white;
-  height: 95px; }
+  /*height: 95px; (-J 10/23)*/
+  height: 155px; }
   #menu .logo {
     display: inline-block;
     height: 100%;
-    max-width: 200px; }
+    max-width: 244px;
+    padding: 10px 0; }
     #menu .logo svg {
       height: 90px; }
     @media (max-width: 960px) {
@@ -39,9 +46,10 @@ img {
       display: inline-block;
       color: rgba(0, 0, 0, 0.87);
       padding: 0 20px;
-      border-left: 1px solid #c9c9c9;
+      border-left: 1px solid #eee;
       height: 100%;
-      line-height: 95px;
+      /*line-height: 95px; -J 10/23*/
+      line-height: 155px;
       transition: all .25s ease;
       letter-spacing: 1px; }
       #menu .md-toolbar-tools .nav-link:hover, #menu .md-toolbar-tools .nav-link:active, #menu .md-toolbar-tools .nav-link:focus {
@@ -80,31 +88,44 @@ img {
     height: 100%; }
   #hero .hook {
     position: absolute;
-    bottom: 0;
+    top: 30%;
     z-index: 6;
-    background: rgba(46, 52, 95, 0.75);
     color: white;
-    padding: 15px 20px;
-    text-align: center; }
+    /* -J 10/23 
+ 	bottom:0;
+	padding: 15px 20px; 
+    text-align: center;
+	background: rgba(46, 52, 95, .75); */ }
     @media (min-width: 1000px) {
       #hero .hook {
         left: 4%; } }
     @media (max-width: 600px) {
       #hero .hook {
         right: 0;
-        left: 0; } }
+        left: 0;
+        width: 100%;
+        top: 40%; } }
     #hero .hook h2 {
-      font-size: 38px;
-      margin: 0 0 5px 0;
+      font-size: 58px;
+      margin: 0;
       font-family: "Oswald", sans-serif;
       font-weight: 800; }
+      @media (max-width: 600px) {
+        #hero .hook h2 {
+          text-align: center;
+          font-size: 48px; } }
     #hero .hook h3 {
-      font-size: 38px;
-      margin: 0;
+      margin: -20px 0 0;
+      font-size: 48px;
       font-family: "Oswald", sans-serif;
       font-weight: 300;
       word-spacing: 4px;
       letter-spacing: 1px; }
+      @media (max-width: 600px) {
+        #hero .hook h3 {
+          font-size: 38px;
+          text-align: center;
+          margin-top: -10px; } }
 
 #intro .container {
   padding: 20px; }
