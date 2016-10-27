@@ -14,7 +14,8 @@ CREATE TABLE cart (
     state VARCHAR(30) DEFAULT NULL,
     phone VARCHAR(25) DEFAULT NULL,
     status VARCHAR(10) DEFAULT 'pending',
-    zip INT(10) DEFAULT NULL
+    zip INT(10) DEFAULT NULL,
+    ppal_id VARCHAR(25) DEFAULT NULL
 ) Engine InnoDB;
 
 
@@ -53,7 +54,8 @@ class Cart extends dbHelper {
       state = ?,
       zip = ?,
       phone = ?,
-      paid = 1
+      paid = 1,
+      ppal_id = ?
       WHERE id = ?'
   ];
 
@@ -278,6 +280,7 @@ class Cart extends dbHelper {
         $_SESSION['shipping_state'],
         $_SESSION['shipping_zip'],
         @$_SESSION['phone_number'],
+        $_SESSION['paypal_transaction_id'],
         $cart['id']
       );
       return ['success' => true, 'transaction_id' => $_SESSION['paypal_transaction_id'], 'fee' => $_SESSION['paypal_fee']];
@@ -286,6 +289,25 @@ class Cart extends dbHelper {
     {
       return ['error' => $PayPalResult['ERRORS']];
     }
+  }
+
+  public function sendConfirmationEmail() {
+    $cart = $this->getCart();
+    ob_start();
+    extract( $cart );
+    include __DIR__ . '/../templates/order_confirmation.tpl';
+    $email_html = ob_get_clean();
+    $to = $cart['email'];
+    $subject = 'Order #'.$cart['id'];
+    $headers = "From: admin@votemesha.com\r\n";
+    $headers .= "Reply-To: t.james.williams@gmail.com\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    mail($to, $subject, $email_html, $headers);
+  }
+
+  public function clearCart() {
+    session_unset();
   }
 
   private function _getPPal() {

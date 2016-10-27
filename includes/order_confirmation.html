@@ -1,0 +1,41 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Order Complete!</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          X
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>Thank you for your order! </h2>
+        <h5>order number: {{cart.id}}</h5>
+        <table style="width:100%">
+          <tr ng-repeat="item in cart.items">
+            <td>{{item.name}}</td>
+            <td>qty. {{item.qty}}</td>
+            <td>({{item.single_price | currency}} ea.)</td>
+            <td style="text-align:right">{{item.group_price | currency}}</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="text-align:right">
+              <strong>total:</strong>
+            </td>
+            <td style="text-align:right"><strong>{{cart.total | currency}}</strong></td>
+          </tr>
+        </table>
+        <p>Please allow 2 to 4 weeks for printing and shipping. Thank you!</p>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+        Close
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

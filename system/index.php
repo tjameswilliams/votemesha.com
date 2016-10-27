@@ -68,6 +68,16 @@ $router->map( 'POST', '/process_checkout', function() {
 	echo json_encode($cart->processCheckout($data['token'],$data['PayerID']),JSON_NUMERIC_CHECK);
 });
 
+$router->map( 'POST', '/get_confirmation', function() {
+	$data = json_decode(file_get_contents("php://input"), true);
+	$cart = new \Cart();
+	$cart_ref = $cart->getCart();
+	$cart->sendConfirmationEmail();
+	$cart->clearCart();
+	header('Content-Type: application/json');
+	echo json_encode($cart_ref, JSON_NUMERIC_CHECK);
+});
+
 // match current request url
 $match = $router->match();
 
