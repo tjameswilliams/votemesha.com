@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "FACE ADMIN"
+AuthUserFile /.htpasswd
+Require valid-user

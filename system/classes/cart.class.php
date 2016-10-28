@@ -15,7 +15,8 @@ CREATE TABLE cart (
     phone VARCHAR(25) DEFAULT NULL,
     status VARCHAR(10) DEFAULT 'pending',
     zip INT(10) DEFAULT NULL,
-    ppal_id VARCHAR(25) DEFAULT NULL
+    ppal_id VARCHAR(25) DEFAULT NULL,
+    notes TEXT
 ) Engine InnoDB;
 
 
@@ -36,6 +37,7 @@ class Cart extends dbHelper {
 
   public $SQL = [
     'getCartSingle' => 'SELECT * FROM cart WHERE id = ?',
+    'getAllOrders' => 'SELECT * FROM cart',
     'insertCart' => 'INSERT INTO cart (status) VALUES ("pending")',
     'upsertItem' => 'INSERT INTO order_item (id,cart_id,name,qty,single_price,group_price)
       VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE
@@ -56,7 +58,11 @@ class Cart extends dbHelper {
       phone = ?,
       paid = 1,
       ppal_id = ?
-      WHERE id = ?'
+      WHERE id = ?',
+    'updateOrderSql' => 'UPDATE cart SET
+      status = ?,
+      notes = ?
+      WHERE id = ?',
   ];
 
   public $products = [
@@ -105,6 +111,22 @@ class Cart extends dbHelper {
     if( isset($_SESSION['cart_id']) ) {
       $this->cart_id = $_SESSION['cart_id'];
     }
+  }
+
+  public function getOrders() {
+    $orders = $this->getAllOrders();
+    foreach( $orders as &$order ) {
+      $order['items'] = $this->getCartItems($order['id']);
+      $order['total'] = 0;
+      foreach( $order['items'] as $item ) {
+        $order['total'] += $item['group_price'];
+      }
+    }
+    return $orders;
+  }
+
+  public function updateOrder($order) {
+    return $this->updateOrderSql($order['status'],$order['notes'],$order['id']);
   }
 
   public function getCart() {

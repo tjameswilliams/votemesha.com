@@ -78,6 +78,29 @@ $router->map( 'POST', '/get_confirmation', function() {
 	echo json_encode($cart_ref, JSON_NUMERIC_CHECK);
 });
 
+$router->map( 'GET', '/orders', function() {
+	auth();
+		$cart = new \Cart();
+	header('Content-Type: application/json');
+	echo json_encode($cart->getOrders(), JSON_NUMERIC_CHECK);
+});
+
+$router->map('POST', '/update_order', function() {
+	$order = json_decode(file_get_contents("php://input"), true);
+	auth();
+		$cart = new \Cart();
+	header('Content-Type: application/json');
+	echo json_encode(['success' => $cart->updateOrder($order)], JSON_NUMERIC_CHECK);
+});
+
+function auth() {
+	$face = array_pop( explode( '/', rtrim($_SERVER['HTTP_REFERER'],'/') ));
+	if( $face !== 'face' ) {
+		header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+		die;
+	}
+}
+
 // match current request url
 $match = $router->match();
 

@@ -1,0 +1,121 @@
+<? $title = 'ADMIN :: V4M.COM';
+$description = 'The true face of an admin';
+include __DIR__.'/../includes/head.htm'; ?>
+<style>
+#menu .md-toolbar-tools .nav-link {
+  display:none;
+}
+#admin .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+#admin h1 {
+  text-align: center;
+}
+#orders {
+  width: 100%;
+}
+#orders th {
+  text-align: left;
+}
+#orders tr.pending td,
+#orders tr.shipped td {
+  padding: 4px;
+}
+#orders tr.pending td {
+  background-color: #eaeac5;
+}
+#orders tr.shipped td {
+  background-color: #c5eac8;
+}
+#orders tr td a {
+  text-decoration: underline;
+  color:blue;
+  cursor:pointer;
+}
+.order-detail > td {
+  background-color:white;
+  padding: 20px;
+}
+</style>
+
+<div id="admin" ng-controller="admin">
+  <h1>Face Administration</h1>
+  <div class="container">
+    <table id="orders">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>email</th>
+          <th>paid</th>
+          <th>paypal</th>
+          <th>status</th>
+          <th>total</th>
+        </tr>
+      </thead>
+      <tr ng-repeat-start="order in orders"
+        ng-class="{pending:order.status == 'pending' && order.paid, shipped:order.status== 'shipped'}"
+        ng-show="order.email">
+        <td>{{order.id}}</td>
+        <td>
+          <a ng-click="order.show_detail = !order.show_detail">{{order.email}}</a>
+        </td>
+        <td>
+          <svg ng-if="order.paid" fill="rgb(30, 117, 51);" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path fill="green" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </td>
+        <td>
+          <a href="https://paypal.com/cgi-bin/webscr?cmd=_view-a-trans&id={{order.ppal_id}}" target="_blank">open</a>
+        </td>
+        <td>
+          <select ng-model="order.status"
+          ng-change="updateOrder(order)"
+          ng-options="o for o in ['pending','shipped','refunded']"
+          ng-if="order.paid"></select>
+        </td>
+        <td>
+          {{order.total | currency}}
+        </td>
+      </tr>
+      <tr ng-repeat-end ng-show="order.show_detail" class="order-detail">
+        <td colspan="6">
+          <table style="width:100%">
+            <tr ng-repeat="item in order.items">
+              <td>{{item.name}}</td>
+              <td>qty. {{item.qty}}</td>
+              <td>({{item.single_price | currency}} ea.)</td>
+              <td style="text-align:right">{{item.group_price | currency}}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align:right">
+                <strong>total:</strong>
+              </td>
+              <td style="text-align:right"><strong>{{order.total | currency}}</strong></td>
+            </tr>
+          </table>
+          <div layout="row">
+            <div flex="50">
+              <strong>Ship To:</strong><br />
+              {{order.first_name}} {{order.last_name}}<br />
+              {{order.address}}<br />
+              {{order.city}} {{order.state}} {{order.zip}}
+            </div>
+            <div flex="50">
+              <md-input-container class="md-block">
+                <label>Order Notes</label>
+                <textarea ng-model="order.notes" ng-change="updateOrder(order)"
+                  ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                  md-select-on-focus></textarea>
+              </md-input-container>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<? include __DIR__.'/../includes/foot.htm' ?>
