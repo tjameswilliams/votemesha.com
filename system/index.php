@@ -29,14 +29,14 @@ $router = new \AltoRouter();
 $router->setBasePath('/system');
 
 $router->map( 'GET', '/cart', function() {
-  $cart = new \Cart();
+  $cart = new \cart();
   header('Content-Type: application/json');
   echo json_encode($cart->getCart(), JSON_NUMERIC_CHECK);
 });
 
 $router->map( 'POST', '/add_item', function() {
   $item = json_decode(file_get_contents("php://input"), true);
-  $cart = new \Cart();
+  $cart = new \cart();
   $cart->updateItem($item);
   header('Content-Type: application/json');
   echo json_encode($cart->getCart(), JSON_NUMERIC_CHECK);
@@ -44,14 +44,14 @@ $router->map( 'POST', '/add_item', function() {
 
 $router->map( 'POST', '/remove_item', function() {
   $item = json_decode(file_get_contents("php://input"), true);
-  $cart = new \Cart();
+  $cart = new \cart();
   $cart->removeItem($item);
   header('Content-Type: application/json');
   echo json_encode($cart->getCart(), JSON_NUMERIC_CHECK);
 });
 
 $router->map( 'POST', '/get_checkout', function() {
-	$cart = new \Cart();
+	$cart = new \cart();
 	$checkout_url = $cart->getCheckout();
 	header('Content-Type: application/json');
 	if( !$checkout_url ) {
@@ -63,14 +63,14 @@ $router->map( 'POST', '/get_checkout', function() {
 
 $router->map( 'POST', '/process_checkout', function() {
 	$data = json_decode(file_get_contents("php://input"), true);
-	$cart = new \Cart();
+	$cart = new \cart();
 	header('Content-Type: application/json');
 	echo json_encode($cart->processCheckout($data['token'],$data['PayerID']),JSON_NUMERIC_CHECK);
 });
 
 $router->map( 'POST', '/get_confirmation', function() {
 	$data = json_decode(file_get_contents("php://input"), true);
-	$cart = new \Cart();
+	$cart = new \cart();
 	$cart_ref = $cart->getCart();
 	$cart->sendConfirmationEmail();
 	$cart->clearCart();
@@ -80,7 +80,7 @@ $router->map( 'POST', '/get_confirmation', function() {
 
 $router->map( 'GET', '/orders', function() {
 	auth();
-		$cart = new \Cart();
+		$cart = new \cart();
 	header('Content-Type: application/json');
 	echo json_encode($cart->getOrders(), JSON_NUMERIC_CHECK);
 });
@@ -88,7 +88,7 @@ $router->map( 'GET', '/orders', function() {
 $router->map('POST', '/update_order', function() {
 	$order = json_decode(file_get_contents("php://input"), true);
 	auth();
-	$cart = new \Cart();
+	$cart = new \cart();
 	header('Content-Type: application/json');
 	echo json_encode(['success' => $cart->updateOrder($order)], JSON_NUMERIC_CHECK);
 });
