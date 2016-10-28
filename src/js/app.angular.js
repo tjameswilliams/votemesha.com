@@ -235,6 +235,10 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
     function($scope,Cart) {
       $scope.cart = Cart;
       console.log($scope.cart);
+      $scope.checkout = function() {
+        $scope.checkoutActive = true;
+        Cart.checkout();
+      };
     }
   ])
 
