@@ -32,7 +32,7 @@ CREATE TABLE order_item (
 ) Engine InnoDB
 
  */
-class Cart extends dbHelper {
+class cart extends dbHelper {
 
   public $cart_id;
 
