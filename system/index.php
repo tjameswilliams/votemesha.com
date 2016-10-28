@@ -88,7 +88,7 @@ $router->map( 'GET', '/orders', function() {
 $router->map('POST', '/update_order', function() {
 	$order = json_decode(file_get_contents("php://input"), true);
 	auth();
-		$cart = new \Cart();
+	$cart = new \Cart();
 	header('Content-Type: application/json');
 	echo json_encode(['success' => $cart->updateOrder($order)], JSON_NUMERIC_CHECK);
 });

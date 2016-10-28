@@ -16,7 +16,8 @@ CREATE TABLE cart (
     status VARCHAR(10) DEFAULT 'pending',
     zip INT(10) DEFAULT NULL,
     ppal_id VARCHAR(25) DEFAULT NULL,
-    notes TEXT
+    notes TEXT,
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) Engine InnoDB;
 
 
@@ -321,7 +322,7 @@ class Cart extends dbHelper {
     $email_html = ob_get_clean();
     $to = $cart['email'];
     $subject = 'Order #'.$cart['id'];
-    $headers = "From: admin@votemesha.com\r\n";
+    $headers = "From: no-reply@votemesha.com\r\n";
     $headers .= "Reply-To: t.james.williams@gmail.com\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
