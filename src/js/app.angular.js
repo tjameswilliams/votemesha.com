@@ -248,7 +248,7 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
       });
       $scope.updateOrder = function(order) {
         AJAX.post('update_order', order).then(function() {
-          
+
         });
       };
     }

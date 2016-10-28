@@ -91,9 +91,9 @@ img {
     top: 30%;
     z-index: 6;
     color: white;
-    /* -J 10/23 
+    /* -J 10/23
  	bottom:0;
-	padding: 15px 20px; 
+	padding: 15px 20px;
     text-align: center;
 	background: rgba(46, 52, 95, .75); */ }
     @media (min-width: 1000px) {
