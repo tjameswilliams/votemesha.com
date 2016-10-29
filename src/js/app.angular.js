@@ -133,7 +133,7 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
         checkout: function() {
           AJAX.post('get_checkout', {id: this.id}).then(function(res) {
             if( res.error ) {
-              console.log(res.error);
+              //console.log(res.error);
             } else {
               window.location.href = res.redirect;
             }
@@ -148,7 +148,7 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
             if( res.success ) {
               window.location.href = window.location.origin+'/#/confirmation';
             } else {
-              console.log(res);
+              //console.log(res);
             }
           });
         },
@@ -193,7 +193,7 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
           if( res.success ) {
             window.location.href = '/#/confirmation';
           } else {
-            console.log(res);
+            //console.log(res);
           }
         });
       }
@@ -234,7 +234,7 @@ angular.module('app', ['ngRoute','ngMaterial','ngMessages'])
     "Cart",
     function($scope,Cart) {
       $scope.cart = Cart;
-      console.log($scope.cart);
+      //console.log($scope.cart);
       $scope.checkout = function() {
         $scope.checkoutActive = true;
         Cart.checkout();
